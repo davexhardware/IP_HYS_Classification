@@ -1,0 +1,3 @@
+Opt.1 - SVM, Random Forest dopo DimRed, per classificare i pixel nelle immagini
+Spectral Angle Mapper
+Opt.2 - Classificazione in class per distinguere i tipi di coltivazione
