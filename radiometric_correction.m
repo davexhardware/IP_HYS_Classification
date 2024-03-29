@@ -1,6 +1,4 @@
-function [corrected_img] = radiometric_correction(path, atmospheric_correction)
-    % Leggi l'immagine TIFF
-    hcube = imread(path);
+function [corrected_img] = radiometric_correction(hcube, atmospheric_correction)
     
     % Normalize values [0,1]
     hcube = double(hcube)/255;

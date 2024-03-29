@@ -1,6 +1,9 @@
+% Load the image
 image_path = 'CROP1_47.tiff';
+hcube = imread(image_path);
 
-[image,components] = PCA(image_path,3);
+% Calculating PCA
+[image,components] = PCA(hcube,3);
 
-[ndvi, msavi, tsavi] = compute_indices(image_path);
-
+% Index Calculation
+[ndvi, msavi, tsavi] = compute_indices(hcube);

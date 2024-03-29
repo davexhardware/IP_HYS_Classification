@@ -1,7 +1,5 @@
-function [ndvi, msavi, tsavi] = compute_indices(path)
-    % Reading image
-    hcube = imread(path);
-    
+function [ndvi, msavi, tsavi] = compute_indices(hcube)
+
     % Normalize values [0,1]
     red = double(hcube(:,:,10))/255;
     nir = double(hcube(:,:,30))/255;

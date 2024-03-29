@@ -1,6 +1,4 @@
-function [img,reduced_image] = PCA(path,principal_components)
-
-hcube = imread(path);
+function [img,reduced_image] = PCA(hcube,principal_components)
 
 reduced_image = hyperpca(hcube,principal_components);
 
