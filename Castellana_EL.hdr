@@ -1,0 +1,84 @@
+ENVI
+description = {
+ Create New File Result [Tue Jan 10 19:11:51 2023]}
+samples = 25303
+lines   = 4409
+bands   = 47
+data type = 4
+interleave = bsq
+file type = ENVI Standard
+header offset = 0
+byte order = 0
+map info = {UTM, 1.000, 1.000, 677541.000, 4530417.000, 5.000000e-01, 5.000000e-01, 33, North, WGS-84, units=Meters}
+coordinate system string = {PROJCS["UTM_Zone_33N",GEOGCS["GCS_WGS_1984",DATUM["D_WGS_1984",SPHEROID["WGS_1984",6378137.0,298.257223563]],PRIMEM["Greenwich",0.0],UNIT["Degree",0.0174532925199433]],PROJECTION["Transverse_Mercator"],PARAMETER["False_Easting",500000.0],PARAMETER["False_Northing",0.0],PARAMETER["Central_Meridian",15.0],PARAMETER["Scale_Factor",0.9996],PARAMETER["Latitude_Of_Origin",0.0],UNIT["Meter",1.0]]}
+default bands = {47,32,16}
+band names = {
+ Channel 1 386.046nm +/- 7.146nm (rows 279-288) (sc) 47 (16U), 
+ Channel 2 400.337nm +/- 4.763nm (rows 277-278) (sc) 46 (16U), 
+ Channel 3 405.100nm +/- 2.381nm (rows 275-276) (sc) 45 (16U), 
+ Channel 4 409.862nm +/- 2.381nm (rows 273-274) (sc) 44 (16U), 
+ Channel 5 414.623nm +/- 2.380nm (rows 271-272) (sc) 43 (16U), 
+ Channel 6 419.383nm +/- 2.380nm (rows 269-270) (sc) 42 (16U), 
+ Channel 7 424.143nm +/- 2.677nm (rows 267-268) (sc) 41 (16U), 
+ Channel 8 430.092nm +/- 2.677nm (rows 264-266) (sc) 40 (16U), 
+ Channel 9 436.040nm +/- 2.676nm (rows 262-263) (sc) 39 (16U), 
+ Channel 10 440.798nm +/- 2.379nm (rows 260-261) (sc) 38 (16U), 
+ Channel 11 445.555nm +/- 2.378nm (rows 258-259) (sc) 37 (16U), 
+ Channel 12 450.311nm +/- 2.378nm (rows 256-257) (sc) 36 (16U), 
+ Channel 13 455.067nm +/- 8.023nm (rows 254-255) (sc) 35 (16U), 
+ Channel 14 482.403nm +/- 13.366nm (rows 233-253) (sc) 34 (16U), 
+ Channel 15 509.722nm +/- 8.017nm (rows 231-232) (sc) 33 (16U), 
+ Channel 16 514.471nm +/- 2.375nm (rows 229-230) (sc) 32 (16U), 
+ Channel 17 519.220nm +/- 2.671nm (rows 227-228) (sc) 31 (16U), 
+ Channel 18 525.156nm +/- 2.671nm (rows 224-226) (sc) 30 (16U), 
+ Channel 19 531.091nm +/- 2.671nm (rows 222-223) (sc) 29 (16U), 
+ Channel 20 535.839nm +/- 2.967nm (rows 220-221) (sc) 28 (16U), 
+ Channel 21 542.959nm +/- 3.560nm (rows 216-219) (sc) 27 (16U), 
+ Channel 22 550.079nm +/- 4.153nm (rows 214-215) (sc) 26 (16U), 
+ Channel 23 559.570nm +/- 4.745nm (rows 208-213) (sc) 25 (16U), 
+ Channel 24 569.060nm +/- 15.120nm (rows 206-207) (sc) 24 (16U), 
+ Channel 25 620.048nm +/- 25.190nm (rows 165-205) (sc) 23 (16U), 
+ Channel 26 671.009nm +/- 13.925nm (rows 163-164) (sc) 22 (16U), 
+ Channel 27 675.748nm +/- 2.370nm (rows 161-162) (sc) 21 (16U), 
+ Channel 28 680.487nm +/- 2.370nm (rows 159-160) (sc) 20 (16U), 
+ Channel 29 685.227nm +/- 2.370nm (rows 157-158) (sc) 19 (16U), 
+ Channel 30 689.966nm +/- 2.370nm (rows 155-156) (sc) 18 (16U), 
+ Channel 31 694.705nm +/- 2.369nm (rows 153-154) (sc) 17 (16U), 
+ Channel 32 699.444nm +/- 2.666nm (rows 151-152) (sc) 16 (16U), 
+ Channel 33 705.367nm +/- 2.666nm (rows 148-150) (sc) 15 (16U), 
+ Channel 34 711.291nm +/- 2.666nm (rows 146-147) (sc) 14 (16U), 
+ Channel 35 716.029nm +/- 2.369nm (rows 144-145) (sc) 13 (16U), 
+ Channel 36 720.768nm +/- 2.369nm (rows 142-143) (sc) 12 (16U), 
+ Channel 37 725.507nm +/- 2.369nm (rows 140-141) (sc) 11 (16U), 
+ Channel 38 730.245nm +/- 2.369nm (rows 138-139) (sc) 10 (16U), 
+ Channel 39 734.984nm +/- 2.369nm (rows 136-137) (sc) 9 (16U), 
+ Channel 40 739.722nm +/- 2.369nm (rows 134-135) (sc) 8 (16U), 
+ Channel 41 744.461nm +/- 2.369nm (rows 132-133) (sc) 7 (16U), 
+ Channel 42 749.199nm +/- 2.665nm (rows 130-131) (sc) 6 (16U), 
+ Channel 43 755.122nm +/- 2.665nm (rows 127-129) (sc) 5 (16U), 
+ Channel 44 761.046nm +/- 6.516nm (rows 125-126) (sc) 4 (16U), 
+ Channel 45 781.185nm +/- 9.774nm (rows 110-124) (sc) 3 (16U), 
+ Channel 46 801.326nm +/- 37.340nm (rows 108-109) (sc) 2 (16U), 
+ Channel 47 930.547nm +/- 64.018nm (rows 1-107) (sc) 1 (16U)}
+wavelength = {
+ 386.000000, 400.299988, 405.100006, 409.899994, 414.600006, 419.399994,
+ 424.100006, 430.100006, 436.000000, 440.799988, 445.600006, 450.299988,
+ 455.100006, 482.399994, 509.700012, 514.500000, 519.200012, 525.200012,
+ 531.099976, 535.799988, 543.000000, 550.099976, 559.599976, 569.099976,
+ 620.000000, 671.000000, 675.700012, 680.500000, 685.200012, 690.000000,
+ 694.700012, 699.400024, 705.400024, 711.299988, 716.000000, 720.799988,
+ 725.500000, 730.200012, 735.000000, 739.700012, 744.500000, 749.200012,
+ 755.099976, 761.000000, 781.200012, 801.299988, 930.500000}
+fwhm = {
+  14.300000,   9.500000,   4.800000,   4.800000,   4.800000,   4.800000,
+   5.400000,   5.400000,   5.400000,   4.800000,   4.800000,   4.800000,
+  16.000000,  26.700001,  16.000000,   4.800000,   5.300000,   5.300000,
+   5.300000,   5.900000,   7.100000,   8.300000,   9.500000,  30.200001,
+  50.400002,  27.900000,   4.700000,   4.700000,   4.700000,   4.700000,
+   4.700000,   5.300000,   5.300000,   5.300000,   4.700000,   4.700000,
+   4.700000,   4.700000,   4.700000,   4.700000,   4.700000,   5.300000,
+   5.300000,  13.000000,  19.500000,  74.699997, 128.000000}
+wavelength units = Nanometers
+sensor type = Unknown
+pixel size = {
+ 5.00000000e-01, 5.00000000e-01, units=Meters}
