@@ -1,4 +1,5 @@
 % Load the image
+load("wavelengths.mat")
 image_path = 'CROP1_47.tiff';
 hcube = imread(image_path);
 
@@ -11,8 +12,4 @@ hcube = imread(image_path);
 % Trying classification
 classified_image = kmeans(image, 3);
 
-figure;
-imshow(classified_image, []);
-colormap(jet(3));
-colorbar;
-title('K-means++ clustering results');
+corrected_image = apply_radiometric_correction(hcube, atmospheric_correction, wavelength);
