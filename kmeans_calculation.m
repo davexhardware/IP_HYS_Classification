@@ -1,4 +1,4 @@
-function [idx] = kmeans(image,num_clusters)
+function [idx] = kmeans_calculation(image,num_clusters)
 
 % Reshaping image
 pixels = reshape(image, [], size(image, num_clusters));

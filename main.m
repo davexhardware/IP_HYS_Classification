@@ -10,6 +10,6 @@ hcube = imread(image_path);
 %[ndvi, msavi, tsavi] = compute_indices(hcube);
 
 % Trying classification
-classified_image = kmeans(image, 3);
+classified_image = kmeans_calculation(image, 3);
 
 corrected_image = apply_radiometric_correction(hcube, atmospheric_correction, wavelength);
