@@ -20,7 +20,7 @@ end
 pixels = reshape(image, [], size(image, 3));
 
 % Set options
-opts = statset('Display','final','MaxIter',50000, 'TolFun',1e-6);
+opts = statset('Display','final','MaxIter',100000, 'TolFun',1e-6);
 
 % Loop over the number of clusters
 for num_clusters = cluster_range
