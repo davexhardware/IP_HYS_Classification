@@ -1,5 +1,7 @@
 
 CROP1_47.tiff
+tree_distinguish/source_cropping/*.dat
+tree_distinguish/source_cropping/*.hdr
 *.asv
 exported_trees.mat
 rfmodel_test.mat
