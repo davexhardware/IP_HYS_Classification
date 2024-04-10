@@ -2,6 +2,7 @@
 % I = geotiffinfo('CROP1_47.tiff');
 treecube=hypercube("tree_distinguish\source_cropping\crop_trees.dat","tree_distinguish\source_cropping\crop_trees.hdr");
 cluster_range = 4:6;
+image=treecube.DataCube;
 num_clusters = length(cluster_range);
 
 % Create the directory if it doesn't exist
