@@ -3,10 +3,10 @@ clear
 
 % Loading image
 image_path = 'CROP1_47.tiff';
-hcube = imread(image_path);
+image = imread(image_path);
 
 % Calculating PCA
-[image,components] = PCA(hcube,5);
+%[image,components] = PCA(image,5);
 
 % Define the range of clusters
 cluster_range = 4:7;
