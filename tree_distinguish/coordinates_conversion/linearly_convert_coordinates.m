@@ -4,6 +4,10 @@ function [X,Y] = linearly_convert_coordinates(x,y)
     x_max_orig = I.BoundingBox(2,1);
     y_min_orig = I.BoundingBox(1,2);
     y_max_orig = I.BoundingBox(2,2);
+%     x_min_orig = lowsx(1);
+%     x_max_orig = highdx(1);
+%     y_min_orig = lowsx(2);
+%     y_max_orig =highdx(2);
 
     % Destination image dimensions
     width = 1368;

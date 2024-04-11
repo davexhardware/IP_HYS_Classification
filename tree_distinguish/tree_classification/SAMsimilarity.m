@@ -4,7 +4,7 @@ clear
 
 I = geotiffinfo('CROP1_47.tiff');
 load("wavelengths.mat")
-load("testFirms.mat")
+load("labeled_tree_coordinates_firms.mat")
 
 % Carica l'ipercubo
 treecube = hypercube("tree_distinguish\source_cropping\crop_trees.dat","tree_distinguish\source_cropping\crop_trees.hdr");
@@ -12,11 +12,15 @@ treecube = hypercube("tree_distinguish\source_cropping\crop_trees.dat","tree_dis
 % Plottaggio delle firme spettrali
 figure;
 hold on;
-for i = 1:size(spectralFirms, 1)
-    plot(wavelength, spectralFirms(i, :));
+for i = 1:size(convxy, 1)
+    if(convxy(i,3)==1)
+        color="b";
+    else
+        color="r";
+    end
+    plot(wavelength, convxy(i,4:50),'Color',color);
 end
-hold off;
-
+hold off
 % Etichette degli assi
 xlabel('Lunghezza d''onda');
 ylabel('Valore');
@@ -26,5 +30,5 @@ title('Firme spettrali');
 legend('off');
 
 % Miglioramento della visualizzazione
-colormap(jet(size(spectralFirms, 1))); % Usa una mappa di colori diversa per distinguere le linee
+colormap(jet(size(convxy(:,4:50), 1))); % Usa una mappa di colori diversa per distinguere le linee
 grid on; % Aggiunge una griglia per facilitare la lettura
