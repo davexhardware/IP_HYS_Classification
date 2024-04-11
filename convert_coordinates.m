@@ -1,5 +1,5 @@
 
-function [x, y] = convert_coordinates(lon, lat)
+function [x, y] = convert_coordinates(lat, lon)
 
     load("geo_data.mat");
     % Original image coordinates
