@@ -1,21 +1,35 @@
 
+function [x, y] = convert_coordinates(lon, lat)
 
-function [x_img, y_img] = convert_coordinates(x, y)
+    load("geo_data.mat");
     % Original image coordinates
-    x_min_orig = 686052;
-    x_max_orig = 686736;
-    y_min_orig = 4535770;
-    y_max_orig = 4536510;
+    lonLeft = lowsx(1);
+    lonRight = highdx(1);
+    lonDelta=lonRight-lonLeft;
+    latBottom = lowsx(2);
+    latBottomRad=latBottom*pi/180.0;
 
     % Destination image dimensions
     width = 1368;
     height = 1480;
 
     % Calculate scale factors
-    scale_x = width / (x_max_orig - x_min_orig);
-    scale_y = height / (y_max_orig - y_min_orig);
+    scaleLon = width / lonDelta;
 
     % Map the coordinates
-    x_img = round((x - x_min_orig) * scale_x);
-    y_img = round((y - y_min_orig) * scale_y);
+    x = (lon-lonLeft)*(scaleLon);
+    lat=lat*pi/180;
+    worldMapWidth=(scaleLon*360.0)/(2*pi);
+    mapOffsetY=(worldMapWidth/2) * (log( ( 1+sin(latBottomRad) ) / ( 1-sin(latBottomRad) ) ));
+    mapLatCalc=(worldMapWidth/2) * log( ( 1+sin(lat) ) / ( 1-sin(lat)) );
+    y = height-(mapLatCalc  - mapOffsetY);
 end
+% pixelTileSize=256.0;
+% degreesToRadiansRatio = 180.0 / pi;
+% radiansToDegreesRatio = pi/ 180.0;
+% zoomLevel=17;
+% pixelGlobeSize=pixelTileSize*power(2,zoomLevel);
+% xPixelToDegreesRatio=pixelGlobeSize/360.0;
+% YPixelToDegreesRatio=pixelGlobeSize/(2*pi);
+% halfPixelGlobeSize = cast(pixelGlobeSize / 2,"single");  
+% pixelGlobeCenter=[halfPixelGlobeSize,halfPixelGlobeSize];
