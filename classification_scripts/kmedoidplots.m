@@ -6,7 +6,7 @@ image_path = 'CROP1_47.tiff';
 image = imread(image_path);
 
 % Calculating PCA
-%[image,components] = PCA(hcube,5);
+[image,components] = PCA(image,5);
 
 % Create the directory if it doesn't exist
 if ~exist('./Results/kmedoids', 'dir')
