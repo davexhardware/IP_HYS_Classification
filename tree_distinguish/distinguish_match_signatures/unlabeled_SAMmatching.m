@@ -104,10 +104,6 @@ for i=(1:cnzi)
     end
 end
 title({'Spectral Matches with n-findr',['Number of Endmembers = ' num2str(numEndmembers)]});
-if ~exist('./classific_img', 'dir')
-    mkdir('./classific_img');
-end
-saveas(f4,'./classific_img/unlabeled_spectral_dist_nfindr.jpg')
 % figure(5)
 % imshow(colorize(hcube,'Method','rgb','ContrastStretching',true))
 % hold on;
