@@ -1,6 +1,6 @@
 clc
 clear
-% We will try to apply SAM to the labeled spectral signature of the tree:
+% We will try to apply SAM to the labeled spectral signatures of the trees:
 % That would be like clustering the trees with a similar spectrum,
 % but we don't have any definitive, differentiate spectral signatures
 % informations for the two types of trees labeled as "Leccino", "Ogliarola
@@ -79,4 +79,5 @@ matchingIndx=reshape(1-(matchingIndx-1),[80 1]);
 matchingppi=reshape(1-(matchingppi-1),[80 1]);
 accuracy=sum(convxy(1:80,3)==matchingIndx,'all')/numel(matchingIndx)
 accuracyfippi=sum(convxy(1:80,3)==matchingFippi,'all')/numel(matchingFippi)
+%% the best-performing
 accuracyppi=sum(convxy(1:80,3)==matchingppi,'all')/numel(matchingppi)
