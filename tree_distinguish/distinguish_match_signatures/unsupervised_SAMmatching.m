@@ -101,14 +101,21 @@ matchingIndx=reshape(matchingIndx-1,[cnzi 1]);
 % matchingppi=reshape(matchingppi-1,[cnzi 1]);
 f4=figure(4);
 imshow(colorize(hcube,'Method','rgb','ContrastStretching',true))
+
 hold on;
+
+% Set the x and y limits of the current plot
 xlim([0 1368])
 ylim([0 1480])
+
+bluePoints = [];
+redPoints = [];
+
 for i=(1:cnzi)
     if(matchingIndx(i)==0)
-        plot(signatures(i,2),signatures(i,1),'r.','MarkerSize',1,'LineWidth',1)
+        bluePoints = [bluePoints; signatures(i,1), signatures(i,2)];
     else
-        plot(signatures(i,2),signatures(i,1),'b.','MarkerSize',1,'LineWidth',1)
+        redPoints = [redPoints; signatures(i,1), signatures(i,2)];
     end
 end
 for i=(1:size(convxy,1))
@@ -116,9 +123,20 @@ for i=(1:size(convxy,1))
         plot(convxy(i,1),convxy(i,2),'r+','MarkerSize',4)
     else
         plot(convxy(i,1),convxy(i,2),'b+','MarkerSize',4)
-    end
 end
-title({'Spectral Matches with n-findr',['Number of Endmembers = ' num2str(numEndmembers)]});
+%% 
+
+% Track blue points
+scatter(bluePoints(:,2), bluePoints(:,1), 1, 'b', 'filled', 'Marker', 'o')
+
+% Mantieni l'attuale plot
+hold on;
+
+% Track red points
+scatter(redPoints(:,2), redPoints(:,1), 1, 'm', 'filled', 'Marker', 'o')
+
+% Set the title of the current plot
+title({'Spectral Matches with ppi',['Number of Endmembers = ' num2str(numEndmembers)]});
 %%
 % figure(5)
 % imshow(colorize(hcube,'Method','rgb','ContrastStretching',true))
