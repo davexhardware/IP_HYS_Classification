@@ -103,6 +103,7 @@ f4=figure(4);
 imshow(colorize(hcube,'Method','rgb','ContrastStretching',true))
 
 hold on;
+%% 
 
 % Set the x and y limits of the current plot
 xlim([0 1368])
@@ -132,7 +133,7 @@ for i=(1:size(convxy,1))
 end
 %% 
 
-f5=figure(5);
+hold on;
 
 % Track blue points
 scatter(bluePoints(:,2), bluePoints(:,1), 1, 'b', 'filled', 'Marker', 'o')
@@ -142,6 +143,8 @@ hold on;
 
 % Track red points  
 scatter(redPoints(:,2), redPoints(:,1), 1, 'm', 'filled', 'Marker', 'o')
+
+set(gca, 'Ydir', 'reverse')
 
 % Mantieni l'attuale plot
 hold on;
@@ -154,6 +157,12 @@ hold on;
 
 % Track red points
 scatter(redGroundTruth(:,1), redGroundTruth(:,2),10,'r+', 'filled', 'Marker', 'o')
+
+% Nascondi i valori sugli assi
+set(gca, 'xtick', [])
+set(gca, 'ytick', [])
+axis off
+axis equal
 
 % Set the title of the current plot
 title({'Spectral Matches with ppi',['Number of Endmembers = ' num2str(numEndmembers)]});
