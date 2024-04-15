@@ -118,13 +118,21 @@ for i=(1:cnzi)
         redPoints = [redPoints; signatures(i,1), signatures(i,2)];
     end
 end
+%% 
+
+blueGroundTruth = [];
+redGroundTruth = [];
+
 for i=(1:size(convxy,1))
     if(convxy(i,3)==0)
-        plot(convxy(i,1),convxy(i,2),'r+','MarkerSize',4)
+        blueGroundTruth = [blueGroundTruth; convxy(i,1), convxy(i,2)];
     else
-        plot(convxy(i,1),convxy(i,2),'b+','MarkerSize',4)
+        redGroundTruth = [redGroundTruth; convxy(i,1), convxy(i,2)];
+    end
 end
 %% 
+
+f5=figure(5);
 
 % Track blue points
 scatter(bluePoints(:,2), bluePoints(:,1), 1, 'b', 'filled', 'Marker', 'o')
@@ -132,8 +140,20 @@ scatter(bluePoints(:,2), bluePoints(:,1), 1, 'b', 'filled', 'Marker', 'o')
 % Mantieni l'attuale plot
 hold on;
 
-% Track red points
+% Track red points  
 scatter(redPoints(:,2), redPoints(:,1), 1, 'm', 'filled', 'Marker', 'o')
+
+% Mantieni l'attuale plot
+hold on;
+
+% Track red points
+scatter(blueGroundTruth(:,1), blueGroundTruth(:,2),10,'g+', 'filled', 'Marker', 'o')
+
+% Mantieni l'attuale plot
+hold on;
+
+% Track red points
+scatter(redGroundTruth(:,1), redGroundTruth(:,2),10,'r+', 'filled', 'Marker', 'o')
 
 % Set the title of the current plot
 title({'Spectral Matches with ppi',['Number of Endmembers = ' num2str(numEndmembers)]});
