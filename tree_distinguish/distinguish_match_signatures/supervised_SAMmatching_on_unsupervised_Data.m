@@ -50,14 +50,28 @@ hold on;
 xlim([0 1368])
 ylim([0 1480])
 
-% Plot the signatures based on the matching index
+bluePoints = [];
+redPoints = [];
+
 for i=(1:cnzi)
     if(matchingIndx(i)==0)
-        plot(signatures(i,2),signatures(i,1),'b.','MarkerSize',1,'LineWidth',1)
+        bluePoints = [bluePoints; signatures(i,1), signatures(i,2)];
     else
-        plot(signatures(i,2),signatures(i,1),'r.','MarkerSize',1,'LineWidth',1)
+        redPoints = [redPoints; signatures(i,1), signatures(i,2)];
     end
 end
+%% 
+
+% Track blue points
+scatter(bluePoints(:,2), bluePoints(:,1), 1, 'b', 'filled', 'Marker', 'o')
+
+hold on;
+
+% Track red points
+scatter(redPoints(:,2), redPoints(:,1), 1, 'm', 'filled', 'Marker', 'o')
+
+xlim([0 1368])
+ylim([0 1480])
 
 % Set the title of the current plot
 title({'Spectral Matches with ppi',['Number of Endmembers = ' num2str(numEndmembers)]});
