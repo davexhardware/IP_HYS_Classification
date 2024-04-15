@@ -106,9 +106,16 @@ xlim([0 1368])
 ylim([0 1480])
 for i=(1:cnzi)
     if(matchingIndx(i)==0)
-        plot(signatures(i,2),signatures(i,1),'b.','MarkerSize',1,'LineWidth',1)
-    else
         plot(signatures(i,2),signatures(i,1),'r.','MarkerSize',1,'LineWidth',1)
+    else
+        plot(signatures(i,2),signatures(i,1),'b.','MarkerSize',1,'LineWidth',1)
+    end
+end
+for i=(1:size(convxy,1))
+    if(convxy(i,3)==0)
+        plot(convxy(i,1),convxy(i,2),'r+','MarkerSize',4)
+    else
+        plot(convxy(i,1),convxy(i,2),'b+','MarkerSize',4)
     end
 end
 title({'Spectral Matches with n-findr',['Number of Endmembers = ' num2str(numEndmembers)]});

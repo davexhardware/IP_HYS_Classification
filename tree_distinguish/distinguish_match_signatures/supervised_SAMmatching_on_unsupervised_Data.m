@@ -58,6 +58,13 @@ for i=(1:cnzi)
         plot(signatures(i,2),signatures(i,1),'r.','MarkerSize',1,'LineWidth',1)
     end
 end
+for i=(1:size(convxy,1))
+    if(convxy(i,3)==0)
+        plot(convxy(i,1),convxy(i,2),'r+','MarkerSize',4)
+    else
+        plot(convxy(i,1),convxy(i,2),'b+','MarkerSize',4)
+    end
+end
 
 % Set the title of the current plot
 title({'Spectral Matches with ppi',['Number of Endmembers = ' num2str(numEndmembers)]});
