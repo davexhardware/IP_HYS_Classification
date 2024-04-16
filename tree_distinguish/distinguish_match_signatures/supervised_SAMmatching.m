@@ -77,7 +77,25 @@ end
 matchingFippi=reshape(matchingFippi-1,[80 1]);
 matchingIndx=reshape(1-(matchingIndx-1),[80 1]);
 matchingppi=reshape(1-(matchingppi-1),[80 1]);
-accuracy=sum(convxy(1:80,3)==matchingIndx,'all')/numel(matchingIndx)
-accuracyfippi=sum(convxy(1:80,3)==matchingFippi,'all')/numel(matchingFippi)
+% Calcolo dell'accuratezza per le classi 0 e 1
+% Calcolo dei valori di accuratezza
+accuracy_0_Indx = sum((convxy(1:80,3)==0) & (matchingIndx==0))/sum(convxy(1:80,3)==0);
+accuracy_1_Indx = sum((convxy(1:80,3)==1) & (matchingIndx==1))/sum(convxy(1:80,3)==1);
+
+accuracy_0_Fippi = sum((convxy(1:80,3)==0) & (matchingFippi==0))/sum(convxy(1:80,3)==0);
+accuracy_1_Fippi = sum((convxy(1:80,3)==1) & (matchingFippi==1))/sum(convxy(1:80,3)==1);
+
+accuracy_0_Ppi = sum((convxy(1:80,3)==0) & (matchingppi==0))/sum(convxy(1:80,3)==0);
+accuracy_1_Ppi = sum((convxy(1:80,3)==1) & (matchingppi==1))/sum(convxy(1:80,3)==1);
+
+% Creazione di un array con i valori di accuratezza
+accuracies = [accuracy_0_Indx, accuracy_1_Indx; accuracy_0_Fippi, accuracy_1_Fippi; accuracy_0_Ppi, accuracy_1_Ppi];
+
+% Creazione di una tabella
+accuracies_table = array2table(accuracies, 'VariableNames', {'Accuratezza Classe 0', 'Accuratezza Classe 1'}, 'RowNames', {'Indx', 'Fippi', 'Ppi'});
+
+% Visualizzazione della tabella
+disp(accuracies_table);
+
 %% the best-performing
-accuracyppi=sum(convxy(1:80,3)==matchingppi,'all')/numel(matchingppi)
+accuracyppi=sum(convxy(1:80,3)==matchingppi,'all')/numel(matchingppi);
