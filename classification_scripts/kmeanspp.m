@@ -6,7 +6,7 @@ image_path = 'CROP1_47.tiff';
 image = imread(image_path);
 
 % Calculating PCA
-%[image,components] = PCA(image,5);
+[image,components] = PCA(image,5);
 
 % Define the range of clusters
 cluster_range = 4:7;
@@ -40,5 +40,15 @@ for num_clusters = cluster_range
     toc
 
     % Save the figure
-    imwrite(reshape(idx, [rows, cols]), jet(num_clusters), ['./Results/kmeans++/kmeans_', num2str(num_clusters), '.png']);
+    %imwrite(reshape(idx, [rows, cols]), jet(num_clusters), ['./Results/kmeans++/kmeans_', num2str(num_clusters), '.png']);
 end   
+%% 
+
+L = reshape(idx, [rows, cols]);
+
+cmp = [ 0 0 0; 0 0 0; 0 0 0; 0 0 0; 0 0 0; 0 0 0; 0 0 0;];
+figure; 
+imagesc( L );
+colormap( cmp ); 
+axis off;
+axis image;
