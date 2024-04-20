@@ -2,7 +2,7 @@
 clc
 clear
 
-I = geotiffinfo('CROP1_47.tiff');
+%I = geotiffinfo('CROP1_47.tiff');
 load("wavelengths.mat")
 load("labeled_tree_coordinates_firms.mat")
 
