@@ -2,37 +2,35 @@ clc
 clear
 
 % Caricamento dell'immagine
-hcube = hypercube('crop_trees.dat', 'crop_trees.hdr');
 load("wavelengths.mat")
-load("labeled_tree_coordinates.mat")
-
+load("labeled_tree_coordinates_firms.mat")
+%%
 labels = convxy(:,3);
 
 coords = convxy(:,1:2);
 
-[rows, columns, bands] = size(hcube.DataCube);
-
+rows=81;
 % Reshaping of image
-image = reshape(hcube.DataCube, [rows*columns, bands]);
+
+image=convxy(:,4:50);
 
 % Number of clusters
 k = 2;
 
 % Non classificare i valori 0
-image_no_zero = image(any(image~=0,2),:);
+%image_no_zero = image(any(image~=0,2),:);
 
-gmm = fitgmdist(image_no_zero, k);
+gmm = fitgmdist(image, k,"CovarianceType","full","RegularizationValue",0.0001);
 
-gmm_labels = cluster(gmm, image_no_zero);
-
-% Creazione di un'immagine vuota
-clustered_image = zeros(rows*columns,1);
+gmm_labels = cluster(gmm, image);
 
 % Inserimento delle etichette nel luogo appropriato
-clustered_image(any(image~=0,2)) = gmm_labels;
-
-clustered_image = reshape(clustered_image, [rows, columns]);
-
+clustered_image = gmm_labels-1.0;
+%%
+accuracy=sum(convxy(:,3)==clustered_image,'all')/numel(clustered_image)
+accuracyLeccino=sum((convxy(:,3)==0) & (clustered_image==0))/sum(convxy(:,3)==0)
+accuracyOgliarola=sum((convxy(:,3)==1) & (clustered_image==1))/sum(convxy(:,3)==1)
+%%
 % Creazione del plot
 figure;
 imshow(clustered_image,[]);
