@@ -23,13 +23,16 @@ k = 2;
 % Inizializzazione delle variabili
 bestRegValue = 0;
 bestAvgAccuracy = 0;
-regValues = logspace(0.000001, 1, 100);  % Valori di regolarizzazione
+bestAccuracy1=1;
+bestAccuracy0=0;
+bestDiffRegValue=0;
+regValues = logspace(-6, 0, 100);  % Valori di regolarizzazione
 numRuns = 100;  % Numero di esecuzioni per ogni valore di regolarizzazione
-k = 5;  % Numero di cluster
+k = 2;  % Numero di cluste
 maxIter = 1000;  % Numero massimo di iterazioni
 
 % Array per memorizzare le accuratezze
-accuracyArray = zeros(numRuns, length(regValues));
+accuracyArray = zeros(numRuns, length(regValues),3);
 
 % Loop attraverso i valori di regolarizzazione
 for regIndex = 1:length(regValues)
@@ -44,21 +47,33 @@ for regIndex = 1:length(regValues)
         
         % Calcolo dell'accuratezza
         accuracy = sum(convxy(:,3) == clustered_image, 'all') / numel(clustered_image);
-        accuracyArray(i, regIndex) = accuracy;
+        accuracy1=sum((convxy(:,3)==1) & (clustered_image==1)) /sum(convxy(:,3)==1);
+        accuracy0=sum((convxy(:,3)==0) & (clustered_image==0)) /sum(convxy(:,3)==0);
+        accuracyArray(i, regIndex,:) = [accuracy,accuracy1,accuracy0];
     end
     
     % Calcolo dell'accuratezza media
-    avgAccuracy = mean(accuracyArray(:, regIndex));
-    
+    avgAccuracy = mean(accuracyArray(:, regIndex,1));
+    avgAccuracy1=mean(accuracyArray(:, regIndex,2));
+    avgAccuracy0=mean(accuracyArray(:, regIndex,3));
     % Aggiornamento del miglior valore di regolarizzazione e accuratezza
     if avgAccuracy > bestAvgAccuracy
         bestAvgAccuracy = avgAccuracy;
         bestRegValue = reg;
     end
+    if abs(avgAccuracy1-avgAccuracy0)<abs(bestAccuracy1-bestAccuracy0)
+        bestAccuracy0=avgAccuracy0;
+        bestAccuracy1=avgAccuracy1;
+        bestDiffRegValue=reg;
+    end
 end
-
+%%
+accuracyArray1=accuracyArray(:,:,2);
+accuracyArray2=accuracyArray(:,:,3);    
+accuracyArray=accuracyArray(:,:,1);
 % Stampa del miglior valore di regolarizzazione
 fprintf('Il miglior valore di regolarizzazione è: %f\n', bestRegValue);
+fprintf('Il miglior valore di regolarizzazione delle difference è: %f\n', bestDiffRegValue);
 
 %%
 % Creazione del plot
