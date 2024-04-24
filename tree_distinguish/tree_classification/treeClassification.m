@@ -20,34 +20,50 @@ k = 2;
 % Non classificare i valori 0
 %image_no_zero = image(any(image~=0,2),:);
 
-gmm = fitgmdist(image, k,"CovarianceType","full","RegularizationValue",0.0001);
+% Inizializzazione delle variabili
+bestRegValue = 0;
+bestAvgAccuracy = 0;
+regValues = logspace(0.000001, 1, 100);  % Valori di regolarizzazione
+numRuns = 100;  % Numero di esecuzioni per ogni valore di regolarizzazione
+k = 5;  % Numero di cluster
+maxIter = 1000;  % Numero massimo di iterazioni
 
-gmm_labels = cluster(gmm, image);
+% Array per memorizzare le accuratezze
+accuracyArray = zeros(numRuns, length(regValues));
 
-% Inserimento delle etichette nel luogo appropriato
-clustered_image = gmm_labels-1.0;
-%%
-accuracy=sum(convxy(:,3)==clustered_image,'all')/numel(clustered_image)
-accuracyLeccino=sum((convxy(:,3)==0) & (clustered_image==0))/sum(convxy(:,3)==0)
-accuracyOgliarola=sum((convxy(:,3)==1) & (clustered_image==1))/sum(convxy(:,3)==1)
+% Loop attraverso i valori di regolarizzazione
+for regIndex = 1:length(regValues)
+    reg = regValues(regIndex);
+    
+    % Esegui l'algoritmo per un numero specificato di volte
+    for i = 1:numRuns
+        options = statset('MaxIter', maxIter);
+        gmm = fitgmdist(image, k, "CovarianceType", "full", "RegularizationValue", reg, 'Options', options);
+        gmm_labels = cluster(gmm, image);
+        clustered_image = gmm_labels - 1.0;
+        
+        % Calcolo dell'accuratezza
+        accuracy = sum(convxy(:,3) == clustered_image, 'all') / numel(clustered_image);
+        accuracyArray(i, regIndex) = accuracy;
+    end
+    
+    % Calcolo dell'accuratezza media
+    avgAccuracy = mean(accuracyArray(:, regIndex));
+    
+    % Aggiornamento del miglior valore di regolarizzazione e accuratezza
+    if avgAccuracy > bestAvgAccuracy
+        bestAvgAccuracy = avgAccuracy;
+        bestRegValue = reg;
+    end
+end
+
+% Stampa del miglior valore di regolarizzazione
+fprintf('Il miglior valore di regolarizzazione è: %f\n', bestRegValue);
+
 %%
 % Creazione del plot
-figure;
-imshow(clustered_image,[]);
-colormap("jet");
-colorbar;
-title('GMM');
-
-% hold on;
-% 
-% markerSize = 10;
-% 
-% for i = 1:length(labels)
-%     if labels(i) == 0
-%         plot(coords(i,1), coords(i,2), 'go', 'MarkerSize', markerSize);
-%     else
-%         plot(coords(i,1), coords(i,2), 'wx', 'MarkerSize', markerSize);
-%     end
-% end
-% 
-% hold off; 
+% figure;
+% imshow(clustered_image,[]);
+% colormap("jet");
+% colorbar;
+% title('GMM');
