@@ -27,6 +27,7 @@ for i=(1:size(coordinates,1))
     convxy(i,4:50)=spectralFirms(i,:);
     convxy(i,3)= labels(i)=="Ogliarola barese";
 end
+%%
 % ...
 figure
 load('wavelengths.mat')
@@ -38,8 +39,10 @@ axis off;
 %....
 for i=(1:size(coordinates,1))
     if(convxy(i,3)==0) %LECCINO
-        plot(convxy(i,1),convxy(i,2),'r+','MarkerSize',5,'LineWidth',1,'DisplayName','Leccino')
+        h(1)=plot(convxy(i,1),convxy(i,2),'r+','MarkerSize',5,'LineWidth',1,'DisplayName','Leccino');
     else % Ogliarola barese
-        plot(convxy(i,1),convxy(i,2),'b+','MarkerSize',5,'LineWidth',1,'DisplayName','Ogliarola')
+        h(2)=plot(convxy(i,1),convxy(i,2),'b+','MarkerSize',5,'LineWidth',1,'DisplayName','Ogliarola');
     end
 end
+
+legend(h,'Leccino','Ogliarola Barese')
