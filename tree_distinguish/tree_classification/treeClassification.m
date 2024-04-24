@@ -33,7 +33,7 @@ maxIter = 1000;  % Numero massimo di iterazioni
 
 % Array per memorizzare le accuratezze
 accuracyArray = zeros(numRuns, length(regValues),3);
-
+rng(4)
 % Loop attraverso i valori di regolarizzazione
 for regIndex = 1:length(regValues)
     reg = regValues(regIndex);
@@ -69,7 +69,7 @@ for regIndex = 1:length(regValues)
 end
 %%
 accuracyArray1=accuracyArray(:,:,2);
-accuracyArray2=accuracyArray(:,:,3);    
+accuracyArray0=accuracyArray(:,:,3);    
 accuracyArray=accuracyArray(:,:,1);
 % Stampa del miglior valore di regolarizzazione
 fprintf('Il miglior valore di regolarizzazione è: %f\n', bestRegValue);
