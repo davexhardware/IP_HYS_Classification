@@ -30,6 +30,7 @@ meanOglia=mean(signOglia,1);
 meanLecc=mean(signLecc,1);
 numEndmembers=2;
 suggestedEndmembers=countEndmembersHFC(signatures) %suggested number of 
+%%
 % different spectral signatures that could optimally be extracted from the
 % whole trees dataset
 endmembers = nfindr(signatures,numEndmembers);
