@@ -23,16 +23,15 @@ k = 2;
 % Inizializzazione delle variabili
 bestRegValue = 0;
 bestAvgAccuracy = 0;
-bestAccuracy1=1;
-bestAccuracy0=0;
-bestDiffRegValue=0;
+bestStd=1e+10;
+bestStdRegValue=0;
 regValues = logspace(-10, 1, 1000);  % Valori di regolarizzazione
 numRuns = 100;  % Numero di esecuzioni per ogni valore di regolarizzazione
 k = 2;  % Numero di cluster
 maxIter = 1000;  % Numero massimo di iterazioni
 
 accuracyArray = zeros(numRuns, length(regValues),3);
-stdArray = zeros(length(regValues),3);
+stdArray = zeros(length(regValues),1);
 rng(4)
 
 for regIndex = 1:length(regValues)
@@ -54,16 +53,15 @@ for regIndex = 1:length(regValues)
     avgAccuracy = mean(accuracyArray(:, regIndex,1));
     avgAccuracy1=mean(accuracyArray(:, regIndex,2)); 
     avgAccuracy0=mean(accuracyArray(:, regIndex,3));
-    stdArray(regIndex, :) = std(accuracyArray(:, regIndex, :));
+    stdArray(regIndex) = std(accuracyArray(:, regIndex,1));
     
     if avgAccuracy > bestAvgAccuracy
         bestAvgAccuracy = avgAccuracy;
         bestRegValue = reg;
     end
-    if abs(avgAccuracy1-avgAccuracy0)<abs(bestAccuracy1-bestAccuracy0)
-        bestAccuracy0=avgAccuracy0;
-        bestAccuracy1=avgAccuracy1;
-        bestDiffRegValue=reg;
+    if stdArray(regIndex)<bestStd
+        bestStd=stdArray(regIndex);
+        bestStdRegValue=reg;
     end
 end
 %%
@@ -73,7 +71,7 @@ accuracyArray=accuracyArray(:,:,1);
 
 
 fprintf('Il miglior valore di regolarizzazione è: %f\n', bestRegValue);
-fprintf('Il miglior valore di regolarizzazione delle differenze è: %f\n', bestDiffRegValue);
+fprintf('Il miglior valore di regolarizzazione delle differenze è: %f\n', bestStdRegValue);
 
 %%
 % Creazione del plot
