@@ -26,19 +26,18 @@ bestAvgAccuracy = 0;
 bestAccuracy1=1;
 bestAccuracy0=0;
 bestDiffRegValue=0;
-regValues = logspace(-6, 0, 100);  % Valori di regolarizzazione
+regValues = logspace(-10, 1, 1000);  % Valori di regolarizzazione
 numRuns = 100;  % Numero di esecuzioni per ogni valore di regolarizzazione
-k = 2;  % Numero di cluste
+k = 2;  % Numero di cluster
 maxIter = 1000;  % Numero massimo di iterazioni
 
-% Array per memorizzare le accuratezze
 accuracyArray = zeros(numRuns, length(regValues),3);
+stdArray = zeros(length(regValues),3);
 rng(4)
-% Loop attraverso i valori di regolarizzazione
+
 for regIndex = 1:length(regValues)
     reg = regValues(regIndex);
     
-    % Esegui l'algoritmo per un numero specificato di volte
     for i = 1:numRuns
         options = statset('MaxIter', maxIter);
         gmm = fitgmdist(image, k, "CovarianceType", "full", "RegularizationValue", reg, 'Options', options);
@@ -52,11 +51,11 @@ for regIndex = 1:length(regValues)
         accuracyArray(i, regIndex,:) = [accuracy,accuracy1,accuracy0];
     end
     
-    % Calcolo dell'accuratezza media
     avgAccuracy = mean(accuracyArray(:, regIndex,1));
     avgAccuracy1=mean(accuracyArray(:, regIndex,2));
     avgAccuracy0=mean(accuracyArray(:, regIndex,3));
-    % Aggiornamento del miglior valore di regolarizzazione e accuratezza
+    stdArray(regIndex, :) = std(accuracyArray(:, regIndex, :));
+    
     if avgAccuracy > bestAvgAccuracy
         bestAvgAccuracy = avgAccuracy;
         bestRegValue = reg;
@@ -71,9 +70,10 @@ end
 accuracyArray1=accuracyArray(:,:,2);
 accuracyArray0=accuracyArray(:,:,3);    
 accuracyArray=accuracyArray(:,:,1);
-% Stampa del miglior valore di regolarizzazione
+
+
 fprintf('Il miglior valore di regolarizzazione è: %f\n', bestRegValue);
-fprintf('Il miglior valore di regolarizzazione delle difference è: %f\n', bestDiffRegValue);
+fprintf('Il miglior valore di regolarizzazione delle differenze è: %f\n', bestDiffRegValue);
 
 %%
 % Creazione del plot
