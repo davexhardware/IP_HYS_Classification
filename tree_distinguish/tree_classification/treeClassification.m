@@ -52,7 +52,7 @@ for regIndex = 1:length(regValues)
     end
     
     avgAccuracy = mean(accuracyArray(:, regIndex,1));
-    avgAccuracy1=mean(accuracyArray(:, regIndex,2));
+    avgAccuracy1=mean(accuracyArray(:, regIndex,2)); 
     avgAccuracy0=mean(accuracyArray(:, regIndex,3));
     stdArray(regIndex, :) = std(accuracyArray(:, regIndex, :));
     
