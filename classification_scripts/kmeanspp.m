@@ -30,12 +30,15 @@ for num_clusters = cluster_range
     tic
     % Run k-means++ with 'plus' option
     [idx, centers] = kmeans(pixels, num_clusters, 'Start', 'plus', 'Options', opts);
+    % Obtaining image's sizes
+    [rows, cols, ~] = size(image);
+    idx=reshape(idx, [rows, cols]);
+    %save(['matlab_data\kmeanspp_',num2str(cluster_range(i)),".mat"],"idx")
 
     %Run k-means with 'plus' option UNCOMMENT THIS IF YOU NEED KMEANS
     %[idx, centers] = kmeans(pixels, num_clusters, 'Options', opts); 
 
-    % Obtaining image's sizes
-    [rows, cols, ~] = size(image);
+  
 
     toc
 

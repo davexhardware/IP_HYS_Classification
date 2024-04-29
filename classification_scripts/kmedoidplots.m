@@ -29,8 +29,10 @@ for num_clusters = cluster_range
     % Run k-medoids
     [idx,centers] = kmedoids(pixels,num_clusters,'Options',opts);
 
-    % Obtaining image's sizes
+   % Obtaining image's sizes
     [rows, cols, ~] = size(image);
+    idx=reshape(idx, [rows, cols]);
+    %save(['matlab_data\kmedoids_',num2str(cluster_range(i)),".mat"],"idx")
 
     toc
 

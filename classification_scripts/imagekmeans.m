@@ -25,7 +25,7 @@ for i = 1:num_clusters
 
     % Run imsegkmeans
     [L,centers] = imsegkmeans(image, cluster_range(i));
-
+    %save(['matlab_data\imsegkmeans_',num2str(cluster_range(i)),".mat"],"L")
     toc
     
     % Save the segmented image as an image
