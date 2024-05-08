@@ -4,7 +4,7 @@ hcube = hypercube('CROP1_47.tiff',wavelength);
 fileroot = matlabshared.supportpkg.getSupportPackageRoot();
 addpath(fullfile(fileroot,'toolbox','images','supportpackages','hyperspectral',...
     'hyperdata','ECOSTRESSSpectraFiles'));
-
+%%
 filenames = ["vegetation.tree.quercus.douglasii.vswir.vh274.ucsb.asd.spectrum.txt",...
     "vegetation.tree.olea.africana.vswir.jpl121.jpl.asd.spectrum.txt",...
     "manmade.generalconstructionmaterial.cementcinderblock.solid.all.0432uuucnc.jhu.becknic.spectrum.txt",...
@@ -33,6 +33,7 @@ ylabel('Reflectance (%)')
 legend(classNames,'Location','northeast')
 title(legend,'Class Names')
 hold off
+%%
 scoreMap = spectralMatch(lib,hcube);
 figure
 montage(scoreMap,'Size',[1 numel(lib)],'BorderSize',10)
@@ -42,9 +43,9 @@ colorbar
 %%
 
 [~,classMap] = min(scoreMap,[],3);
-classTable = table((min(classMap):max(classMap))',classNames(2:5)',...
+classTable = table((min(classMap):max(classMap))',classNames',...
              'VariableNames',{'Classification map value','Matching library signature'});
-
+%%
 fig = figure('Position',[0 0 430 400]);
 fig2=figure;
 axes1 = axes('Parent',fig);
@@ -55,7 +56,7 @@ axis off
 axes2 = axes('Parent',fig2);
 imagesc(classMap,'Parent',axes2)
 axis off
-colormap(jet(numel(classNames(2:5))))
+colormap(jet(numel(classNames)))
 title('Pixel-wise Classification Map')
-ticks = linspace(2.4,4.9,numel(classNames(2:5)));
-colorbar('Ticks',ticks,'TickLabels',classNames(2:5))
+ticks = linspace(1.2,4.9,numel(classNames));
+colorbar('Ticks',ticks,'TickLabels',classNames)
