@@ -1,6 +1,6 @@
 tree_mask=imread("tree_distinguish/source_cropping/Seg_Crop1.tif");
 
-masked_matrix = mask_matrix(L,3);
+masked_matrix = mask_matrix(classMap,2);
 
 % Inizializza la matrice dei risultati con zeri
 result = zeros(size(masked_matrix));
